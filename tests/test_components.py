@@ -1,12 +1,12 @@
 import pytest
 
-from dlg_lowpass_components import MyAppDROP, MyDataDROP
+from dlg_lowpass_components import LPSignalGenerator
 
 given = pytest.mark.parametrize
 
 
 def test_myApp_class():
-    assert MyAppDROP("a", "a").run() == "Hello from MyAppDROP"
+    assert LPSignalGenerator("a", "a").run() == "Hello from LPSignalGenerator"
 
 
 def test_myData_class():
