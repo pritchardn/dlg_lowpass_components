@@ -202,7 +202,7 @@ class LPWindowGenerator(BarrierAppDROP):
         if len(outs) < 1:
             raise Exception("At least one output required for %r" % self)
         self.series = self.gen_win()
-        data = self.series.tostring()
+        data = self.series.tobytes()
         for output in outs:
             output.len = len(data)
             output.write(data)

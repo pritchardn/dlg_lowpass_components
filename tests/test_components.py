@@ -1,6 +1,6 @@
 import unittest
 import time
-from dlg_lowpass_components import LPSignalGenerator
+from dlg_lowpass_components import LPSignalGenerator, LPWindowGenerator, LPAddNoise
 from dlg.drop import InMemoryDROP
 from dlg.droputils import allDropContents, DROPWaiterCtx
 
@@ -65,3 +65,57 @@ class TestLPSignalGenerator(unittest.TestCase):
         self.assertIsNotNone(signal)
         self.assertIsNotNone(vanilla_signal)
         self.assertNotEqual(signal, vanilla_signal)
+
+class TestLPWindowGenerator(unittest.TestCase):
+
+    def test_default(self):
+        generator = LPWindowGenerator("a", "a")
+        memory = InMemoryDROP("b", "b")
+        generator.addOutput(memory)
+        generator.run()
+        memory.setCompleted()
+        signal = allDropContents(memory)
+        self.assertIsNotNone(signal)
+        self.assertEqual(generator.length * 8, len(signal))
+
+    def test_change_length(self):
+        new_length = 512
+        generator = LPWindowGenerator("a", "a", length=new_length)
+        memory = InMemoryDROP("b", "b")
+        generator.addOutput(memory)
+        generator.run()
+        memory.setCompleted()
+        signal = allDropContents(memory)
+        self.assertIsNotNone(signal)
+        self.assertEqual(new_length, generator.length)
+        self.assertEqual(new_length * 8, len(signal))
+
+    def test_change_cutoff(self):
+        new_cutoff = 660
+        generator = LPWindowGenerator("a", "a", freqs=new_cutoff)
+        memory = InMemoryDROP("b", "b")
+        vanilla_generator = LPWindowGenerator("A", "A")
+        vanilla_memory = InMemoryDROP("B", "B")
+        generator.addOutput(memory)
+        vanilla_generator.addOutput(vanilla_memory)
+        generator.run()
+        vanilla_generator.run()
+        memory.setCompleted()
+        vanilla_memory.setCompleted()
+        signal = allDropContents(memory)
+        vanilla_signal = allDropContents(vanilla_memory)
+
+    def test_change_srate(self):
+        new_srate = 4500
+        generator = LPWindowGenerator("a", "a", srate=new_srate)
+        memory = InMemoryDROP("b", "b")
+        vanilla_generator = LPWindowGenerator("A", "A")
+        vanilla_memory = InMemoryDROP("B", "B")
+        generator.addOutput(memory)
+        vanilla_generator.addOutput(vanilla_memory)
+        generator.run()
+        vanilla_generator.run()
+        memory.setCompleted()
+        vanilla_memory.setCompleted()
+        signal = allDropContents(memory)
+        vanilla_signal = allDropContents(vanilla_memory)
