@@ -275,7 +275,10 @@ class LPAddNoise(BarrierAppDROP):
         )
         for i in range(len(self.signal)):
             samples[i] += np.sin(2 * np.pi * i * self.freq / self.srate)
-        np.add(self.signal, samples, out=self.signal)
+
+        out_array = np.empty(self.signal.shape)
+        np.add(self.signal, samples, out=out_array)
+        self.signal = out_array
         return self.signal
 
     def get_inputs(self):
@@ -287,7 +290,7 @@ class LPAddNoise(BarrierAppDROP):
         if len(ins) != 1:
             raise Exception("Precisely one input required for %r" % self)
 
-        array = np.fromstring(droputils.allDropContents(ins[0]))
+        array = np.frombuffer(droputils.allDropContents(ins[0]))
         self.signal = np.frombuffer(array)
 
     def run(self):

@@ -119,3 +119,34 @@ class TestLPWindowGenerator(unittest.TestCase):
         vanilla_memory.setCompleted()
         signal = allDropContents(memory)
         vanilla_signal = allDropContents(vanilla_memory)
+
+
+class TestLPNoiseGenerator(unittest.TestCase):
+
+    def test_compare_to_SignalGen(self):
+        noise_params = {'mean': 0.0, 'std': 1.0, 'freq': 1200, 'seed': 42}
+        noisy_generator = LPSignalGenerator("a", "a", noise=noise_params)
+        noisy_memory = InMemoryDROP("b", "b")
+        noisy_generator.addOutput(noisy_memory)
+        noisy_generator.run()
+        noisy_memory.setCompleted()
+        noisy_signal = allDropContents(noisy_memory)
+
+        vanilla_generator = LPSignalGenerator("A", "A")
+        interim_mem = InMemoryDROP("B", "B")
+        noisy_adder = LPAddNoise("C", "C")
+        final_mem = InMemoryDROP("D", "D")
+
+        vanilla_generator.addOutput(interim_mem)
+        noisy_adder.addInput(interim_mem)
+        noisy_adder.addOutput(final_mem)
+
+        with DROPWaiterCtx(self, final_mem, 10):
+            vanilla_generator.run()
+            interim_mem.setCompleted()
+
+        final_signal = allDropContents(final_mem)
+
+        self.assertIsNotNone(noisy_signal)
+        self.assertIsNotNone(final_signal)
+        self.assertEqual(noisy_signal, final_signal)
