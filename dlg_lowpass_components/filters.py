@@ -76,7 +76,7 @@ class LPFilterFFTNP(BarrierAppDROP):
         if len(ins) != 2:
             raise Exception("Precisely two input required for %r" % self)
 
-        array = [np.fromstring(droputils.allDropContents(inp)) for inp in ins]
+        array = [np.frombuffer(droputils.allDropContents(inp)) for inp in ins]
         self.series = array
 
     def filter(self):
@@ -87,7 +87,6 @@ class LPFilterFFTNP(BarrierAppDROP):
         signal = self.series[0]
         window = self.series[1]
         nfft = determine_size(len(signal) + len(window) - 1)
-        print(nfft)
         sig_zero_pad = np.zeros(nfft, dtype=self.precision["float"])
         win_zero_pad = np.zeros(nfft, dtype=self.precision["float"])
         sig_zero_pad[0 : len(signal)] = signal
@@ -108,7 +107,7 @@ class LPFilterFFTNP(BarrierAppDROP):
             raise Exception("At least one output required for %r" % self)
         self.get_inputs()
         self.output = self.filter()
-        data = self.output.tostring()
+        data = self.output.tobytes()
         for output in outs:
             output.len = len(data)
             output.write(data)

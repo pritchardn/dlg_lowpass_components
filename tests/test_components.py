@@ -1,6 +1,8 @@
 import unittest
 import time
-from dlg_lowpass_components import LPSignalGenerator, LPWindowGenerator, LPAddNoise
+import numpy as np
+
+from dlg_lowpass_components import LPSignalGenerator, LPWindowGenerator, LPAddNoise, LPFilterFFTFFTW, LPFilterFFTCuda, LPFilterPointwiseNP, LPFilterFFTNP
 from dlg.drop import InMemoryDROP
 from dlg.droputils import allDropContents, DROPWaiterCtx
 
@@ -111,3 +113,89 @@ class TestLPNoiseGenerator(unittest.TestCase):
         self.assertIsNotNone(noisy_signal)
         self.assertIsNotNone(final_signal)
         self.assertEqual(noisy_signal, final_signal)
+
+
+def _run_filter(obj, filter):
+    generator = LPSignalGenerator("a", "a")
+    signal_drop = InMemoryDROP("b", "b")
+    window_drop = InMemoryDROP("c", "c")
+    in_signal = _run_component(generator)
+
+    generator = LPWindowGenerator("a", "a")
+    window = _run_component(generator)
+    filtered_signal_drop = InMemoryDROP("d", "d")
+    filter.addInput(signal_drop)
+    filter.addInput(window_drop)
+    filter.addOutput(filtered_signal_drop)
+
+    with DROPWaiterCtx(obj, filtered_signal_drop, 10):
+        signal_drop.write(in_signal)
+        window_drop.write(window)
+        signal_drop.setCompleted()
+        window_drop.setCompleted()
+
+    filtered_signal = allDropContents(filtered_signal_drop)
+    return filtered_signal, len(in_signal)
+
+class TestLPFilterFFTNP(unittest.TestCase):
+
+    def test_default(self):
+        filter = LPFilterFFTNP("a", "a")
+        filtered_signal, original_length= _run_filter(self, filter)
+        self.assertIsNotNone(filtered_signal)
+        self.assertEqual(original_length/8*2-1, len(filtered_signal) / np.dtype(complex).itemsize)
+
+    def test_precision(self):
+        float_filter = LPFilterFFTNP("a", "a", double_prec=False)
+        double_filter = LPFilterFFTNP("a", "a")
+        float_signal, _ = _run_filter(self, float_filter)
+        double_signal, _ = _run_filter(self, double_filter)
+        self.assertNotEqual(float_signal, double_signal)
+
+class TestLPFilterFFTFFTW(unittest.TestCase):
+
+    def test_default(self):
+        filter = LPFilterFFTFFTW("a", "a")
+        filtered_signal, original_length= _run_filter(self, filter)
+        self.assertIsNotNone(filtered_signal)
+        self.assertEqual(original_length/8*2-1, len(filtered_signal) / np.dtype(complex).itemsize)
+
+    def test_precision(self):
+        float_filter = LPFilterFFTFFTW("a", "a", double_prec=False)
+        double_filter = LPFilterFFTFFTW("a", "a")
+        float_signal, _ = _run_filter(self, float_filter)
+        double_signal, _ = _run_filter(self, double_filter)
+        self.assertNotEqual(float_signal, double_signal)
+
+class TestLPFilterFFTCuda(unittest.TestCase):
+    # WARNING: GCC version 9 or earlier.
+    def test_default(self):
+        filter = LPFilterFFTCuda("a", "a")
+        filtered_signal, original_length = _run_filter(self, filter)
+        self.assertIsNotNone(filtered_signal)
+        self.assertEqual(original_length / 8 * 2 - 1,
+                         len(filtered_signal) / np.dtype(complex).itemsize)
+
+    def test_precision(self):
+        float_filter = LPFilterFFTCuda("a", "a", double_prec=False)
+        double_filter = LPFilterFFTCuda("a", "a")
+        float_signal, _ = _run_filter(self, float_filter)
+        double_signal, _ = _run_filter(self, double_filter)
+        self.assertNotEqual(float_signal, double_signal)
+
+
+class TestLPFilterPointwiseNP(unittest.TestCase):
+
+    def test_default(self):
+        filter = LPFilterPointwiseNP("a", "a")
+        filtered_signal, original_length = _run_filter(self, filter)
+        self.assertIsNotNone(filtered_signal)
+        self.assertEqual(original_length / 8 * 2 - 1,
+                         len(filtered_signal) / np.dtype(complex).itemsize)
+
+    def test_precision(self):
+        float_filter = LPFilterPointwiseNP("a", "a", double_prec=False)
+        double_filter = LPFilterPointwiseNP("a", "a")
+        float_signal, _ = _run_filter(self, float_filter)
+        double_signal, _ = _run_filter(self, double_filter)
+        self.assertNotEqual(float_signal, double_signal)
