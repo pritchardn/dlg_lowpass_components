@@ -106,7 +106,8 @@ class LPSignalGenerator(BarrierAppDROP):
             raise Exception("At least one output required for %r" % self)
         self.series = self.gen_sig()
         if len(self.noise) > 0:
-            self.noise[0] = 1 / self.noise[0]
+            if 'alpha' in self.noise:
+                self.noise['alpha'] = 1 / self.noise['alpha']
             self.series = self.add_noise(
                 self.series,
                 self.noise["mean"],
@@ -117,7 +118,7 @@ class LPSignalGenerator(BarrierAppDROP):
                 self.noise.get("alpha", 0.1),
             )
 
-        data = self.series.tostring()
+        data = self.series.tobytes()
         for output in outs:
             output.len = len(data)
             output.write(data)
