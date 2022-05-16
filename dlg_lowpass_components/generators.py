@@ -65,7 +65,7 @@ class LPSignalGenerator(BarrierAppDROP):
         super(LPSignalGenerator, self).initialize(**kwargs)
 
     def add_noise(
-            self, series: np.array, mean, std, freq, sample_rate, seed, alpha=0.1
+        self, series: np.array, mean, std, freq, sample_rate, seed, alpha=0.1
     ):
         """
         A noise to the provided signal by producing random values of a given frequency
@@ -106,8 +106,8 @@ class LPSignalGenerator(BarrierAppDROP):
             raise Exception("At least one output required for %r" % self)
         self.series = self.gen_sig()
         if len(self.noise) > 0:
-            if 'alpha' in self.noise:
-                self.noise['alpha'] = 1 / self.noise['alpha']
+            if "alpha" in self.noise:
+                self.noise["alpha"] = 1 / self.noise["alpha"]
             self.series = self.add_noise(
                 self.series,
                 self.noise["mean"],
