@@ -19,7 +19,9 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [3.8]
-        os: [ubuntu-latest]
+        - os: [ubuntu-latest]
+          cuda: "11.2"
+          gcc: 9
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +39,9 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [3.8]
-        os: [ubuntu-latest]
+        - os: [ ubuntu-latest ]
+          cuda: "11.2"
+          gcc: 9
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -70,7 +74,9 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [3.8]
-        os: [macos-latest]
+        - os: [macos-latest]
+          cuda: "11.2"
+          gcc: 9
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
