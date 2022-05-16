@@ -37,6 +37,7 @@ setup(
     long_description=read("README.md"),
     long_description_content_type="text/markdown",
     author="pritchardn",
+    author_email="nicholas.pritchard@uwa.edu.au",
     packages=find_packages(exclude=["tests", ".github"]),
     install_requires=read_requirements("requirements.txt"),
     entry_points={
