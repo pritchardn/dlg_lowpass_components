@@ -9,3 +9,7 @@ codecov
 mypy
 gitchangelog
 mkdocs
+numpy==1.22.3
+pycuda==2021.1
+pyFFTW==0.13.0
+scikit-cuda==0.5.3
