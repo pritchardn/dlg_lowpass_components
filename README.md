@@ -25,7 +25,7 @@ docker exec -t daliuge-engine bash -c 'pip install --prefix=$DLG_ROOT/code dlg_l
 ## Usage
 For example the MyComponent component will be available to the engine when you specify 
 ```
-dlg_lowpass_components.apps.MyAppDROP
+dlg_lowpass_components.LPSignalGenerator
 ```
 in the AppClass field of a Python Branch component. The EAGLE palette associated with these components are also generated and can be loaded directly into EAGLE. In that case all the fields are correctly populated for the respective components.
 
