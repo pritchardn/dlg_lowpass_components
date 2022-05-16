@@ -1,7 +1,9 @@
 # __main__ is not required for DALiuGE components.
 import argparse  # pragma: no cover
 
-from . import LPSignalGenerator  # pragma: no cover
+from dlg.drop import InMemoryDROP
+
+from dlg_lowpass_components import LPSignalGenerator
 
 
 def main() -> None:  # pragma: no cover
@@ -24,22 +26,6 @@ def main() -> None:  # pragma: no cover
         description="dlg_lowpass_components.",
         epilog="Enjoy the dlg_lowpass_components functionality!",
     )
-    # This is required positional argument
-    parser.add_argument(
-        "name",
-        type=str,
-        help="The username",
-        default="pritchardn",
-    )
-    # This is optional named argument
-    parser.add_argument(
-        "-m",
-        "--message",
-        type=str,
-        help="The Message",
-        default="Hello",
-        required=False,
-    )
     parser.add_argument(
         "-v",
         "--verbose",
@@ -47,13 +33,11 @@ def main() -> None:  # pragma: no cover
         help="Optionally adds verbosity",
     )
     args = parser.parse_args()
-    print(f"{args.message} {args.name}!")
-    if args.verbose:
-        print("Verbose mode is on.")
-
     print("Executing main function")
-    comp = LPSignalGenerator()
-    print(comp.run())
+    comp = LPSignalGenerator("A", "A")
+    memory = InMemoryDROP("b", "b")
+    comp.addOutput(memory)
+    comp.run()
     print("End of main function")
 
 
