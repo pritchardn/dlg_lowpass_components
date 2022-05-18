@@ -6,7 +6,7 @@
         "repo": "ICRAR/EAGLE_test_repo",
         "readonly": true,
         "filePath": "/home/nikolas/PycharmProjects/dlg_lowpass_components/dlg_lowpass_components.palette",
-        "sha": "0.1.0",
+        "sha": "d6ecc621",
         "git_url": "dlg_lowpass_components"
     },
     "nodeDataArray": [
@@ -48,7 +48,7 @@
                 }
             ],
             "git_url": "dlg_lowpass_components",
-            "sha": "0.1.0"
+            "sha": "d6ecc621"
         },
         {
             "category": "PythonApp",
@@ -126,7 +126,7 @@
                 }
             ],
             "git_url": "dlg_lowpass_components",
-            "sha": "0.1.0"
+            "sha": "d6ecc621"
         },
         {
             "category": "PythonApp",
@@ -204,7 +204,7 @@
                 }
             ],
             "git_url": "dlg_lowpass_components",
-            "sha": "0.1.0"
+            "sha": "d6ecc621"
         },
         {
             "category": "PythonApp",
@@ -282,7 +282,7 @@
                 }
             ],
             "git_url": "dlg_lowpass_components",
-            "sha": "0.1.0"
+            "sha": "d6ecc621"
         },
         {
             "category": "PythonApp",
@@ -360,7 +360,7 @@
                 }
             ],
             "git_url": "dlg_lowpass_components",
-            "sha": "0.1.0"
+            "sha": "d6ecc621"
         },
         {
             "category": "PythonApp",
@@ -457,7 +457,7 @@
                 }
             ],
             "git_url": "dlg_lowpass_components",
-            "sha": "0.1.0"
+            "sha": "d6ecc621"
         },
         {
             "category": "PythonApp",
@@ -542,7 +542,7 @@
                 }
             ],
             "git_url": "dlg_lowpass_components",
-            "sha": "0.1.0"
+            "sha": "d6ecc621"
         }
     ],
     "linkDataArray": []
