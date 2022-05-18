@@ -1,0 +1,549 @@
+{
+    "modelData": {
+        "fileType": "palette",
+        "repoService": "GitHub",
+        "repoBranch": "master",
+        "repo": "ICRAR/EAGLE_test_repo",
+        "readonly": true,
+        "filePath": "/home/nikolas/PycharmProjects/dlg_lowpass_components/dlg_lowpass_components.palette",
+        "sha": "0.1.0",
+        "git_url": "dlg_lowpass_components"
+    },
+    "nodeDataArray": [
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -1,
+            "text": "LPAddNoise",
+            "description": "Component to add additional noise to a signal array.",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [],
+            "outputPorts": [],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [],
+            "applicationArgs": [
+                {
+                    "text": "Application Class",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPAddNoise",
+                    "default": "dlg_lowpass_components.LPAddNoise",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "0.1.0"
+        },
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -2,
+            "text": "LPFilterFFTCuda",
+            "description": "Implements a lowpass filter via fft with cuda",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [
+                {
+                    "Id": "9f9cf709-51e1-4145-85a2-78fa9f8f4c30",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing incoming signal (string dump of floats)"
+                },
+                {
+                    "Id": "c7a3376a-e474-41b0-8638-c7f88d4c8f71",
+                    "IdText": "window",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing the filter window (string dump of floats)"
+                }
+            ],
+            "outputPorts": [
+                {
+                    "Id": "9066590b-24ba-4f13-8ecd-2edf8f7be284",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "Complex",
+                    "description": " Numpy array containing final signal (complex)"
+                }
+            ],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [],
+            "applicationArgs": [
+                {
+                    "text": "Application Class",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPFilterFFTCuda",
+                    "default": "dlg_lowpass_components.LPFilterFFTCuda",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Double Precision",
+                    "name": "doubleprecision",
+                    "value": " ",
+                    "default": " ",
+                    "description": "Whether to use double (true) or float (false) precision.",
+                    "readonly": false,
+                    "type": "Boolean",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "0.1.0"
+        },
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -3,
+            "text": "LPFilterFFTFFTW",
+            "description": "Implements a lowpass filter via fft with FFTW",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [
+                {
+                    "Id": "55a5d64d-93cb-4e64-bcd6-376d9525afed",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing incoming signal (string dump of floats)"
+                },
+                {
+                    "Id": "54198c1f-bbdc-439c-9d72-5658432b35e7",
+                    "IdText": "window",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing the filter window (string dump of floats)"
+                }
+            ],
+            "outputPorts": [
+                {
+                    "Id": "23e47cb4-e6f9-4f3b-9d38-bd19f58ec4a7",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "Complex",
+                    "description": " Numpy array containing final signal (complex)"
+                }
+            ],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [],
+            "applicationArgs": [
+                {
+                    "text": "Application Class",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPFilterFFTFFTW",
+                    "default": "dlg_lowpass_components.LPFilterFFTFFTW",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Double Precision",
+                    "name": "doubleprecision",
+                    "value": " ",
+                    "default": " ",
+                    "description": "Whether to use double (true) or float (false) precision.",
+                    "readonly": false,
+                    "type": "Boolean",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "0.1.0"
+        },
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -4,
+            "text": "LPFilterfftNP",
+            "description": "Implements a lowpass filter via fft with numpy",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [
+                {
+                    "Id": "8d958b47-f738-4460-92c0-e4222a45193e",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing incoming signal (string dump of floats)"
+                },
+                {
+                    "Id": "1e86f003-7a1d-43ae-bac8-62dfa19714f5",
+                    "IdText": "window",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing the filter window (string dump of floats)"
+                }
+            ],
+            "outputPorts": [
+                {
+                    "Id": "e923c22a-6738-4745-85d5-d62ff6fe72f8",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "Complex",
+                    "description": " Numpy array containing final signal (complex)"
+                }
+            ],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [],
+            "applicationArgs": [
+                {
+                    "text": "Application Class",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPFilterFFTNP",
+                    "default": "dlg_lowpass_components.LPFilterFFTNP",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Double Precision",
+                    "name": "doubleprecision",
+                    "value": " ",
+                    "default": " ",
+                    "description": "Whether to use double (true) or float (false) precision.",
+                    "readonly": false,
+                    "type": "Boolean",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "0.1.0"
+        },
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -5,
+            "text": "LPFilterPointwiseNP",
+            "description": "Implements a lowpass filter via pointwise convolution with numpy",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [
+                {
+                    "Id": "084c8b73-11f5-4d41-a969-51ac53eff93c",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing incoming signal (string dump of floats)"
+                },
+                {
+                    "Id": "53b087b5-2b40-492d-ab3b-bb431229a7b2",
+                    "IdText": "window",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing the filter window (string dump of floats)"
+                }
+            ],
+            "outputPorts": [
+                {
+                    "Id": "433d849d-3224-4b9a-b965-f4033911a190",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "Complex",
+                    "description": " Numpy array containing final signal (complex)"
+                }
+            ],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [],
+            "applicationArgs": [
+                {
+                    "text": "Application Class",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPFilterPointwiseNP",
+                    "default": "dlg_lowpass_components.LPFilterPointwiseNP",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Double Precision",
+                    "name": "doubleprecision",
+                    "value": " ",
+                    "default": " ",
+                    "description": "Whether to use double (true) or float (false) precision.",
+                    "readonly": false,
+                    "type": "Boolean",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "0.1.0"
+        },
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -6,
+            "text": "LP_SignalGenerator",
+            "description": "Generates a noisy sine signal for filtering. Effectively an input generator.",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [],
+            "outputPorts": [
+                {
+                    "Id": "42a4abaa-cc1c-4934-8653-f8d295ef375d",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing final signal (purely real (floats))"
+                }
+            ],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [],
+            "applicationArgs": [
+                {
+                    "text": "Application Class",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPSignalGenerator",
+                    "default": "dlg_lowpass_components.LPSignalGenerator",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Signal length",
+                    "name": "length",
+                    "value": " ",
+                    "default": " ",
+                    "description": "Length of the output signal",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Sample rate",
+                    "name": "samplerate",
+                    "value": " ",
+                    "default": " ",
+                    "description": "The sample rate of the signal",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Signal frequencies",
+                    "name": "frequencies",
+                    "value": " ",
+                    "default": " ",
+                    "description": "A dictionary containing a single list of values - the frequencies incorporated in the original signal.",
+                    "readonly": false,
+                    "type": "Json",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Noise parameters",
+                    "name": "noise_params",
+                    "value": " ",
+                    "default": " ",
+                    "description": "A dictionary containing several values defining the properties of an interleaved noise. mean, std-deviation, frequency, random seed, alpha",
+                    "readonly": false,
+                    "type": "Json",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "0.1.0"
+        },
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -7,
+            "text": "LP_WindowGenerator",
+            "description": "Generates a Hann window for low-pass filtering.",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [],
+            "outputPorts": [
+                {
+                    "Id": "82693d1d-7a0c-4653-b9b1-fdbba3cd6d54",
+                    "IdText": "window",
+                    "text": "Window",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing final signal (purely real (floats))"
+                }
+            ],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [],
+            "applicationArgs": [
+                {
+                    "text": "Application Class",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPWindowGenerator",
+                    "default": "dlg_lowpass_components.LPWindowGenerator",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Signal length",
+                    "name": "length",
+                    "value": " ",
+                    "default": " ",
+                    "description": "Length of the output signal",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Sample rate",
+                    "name": "samplerate",
+                    "value": " ",
+                    "default": " ",
+                    "description": "The sample rate of the signal",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Filter cutoff",
+                    "name": "cutoff",
+                    "value": " ",
+                    "default": " ",
+                    "description": "The frequency of the low-pass filter",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "0.1.0"
+        }
+    ],
+    "linkDataArray": []
+}

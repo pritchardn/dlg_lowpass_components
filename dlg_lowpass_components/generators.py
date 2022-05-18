@@ -147,7 +147,7 @@ class LPSignalGenerator(BarrierAppDROP):
 #     \~English The sample rate of the signal
 # @param[in] param/cutoff Filter cutoff/ /Integer/readwrite/
 #     \~English The frequency of the low-pass filter
-# @param[out] port/signal Signal/float/
+# @param[out] port/window Window/float/
 #     \~English Numpy array containing final signal (purely real (floats))
 # @par EAGLE_END
 class LPWindowGenerator(BarrierAppDROP):

@@ -7,7 +7,7 @@ from setuptools import find_packages, setup
 def read(*paths, **kwargs):
     """Read the contents of a text file safely.
     >>> read("dlg_lowpass_components", "VERSION")
-    '0.1.0'
+    '0.1.1'
     >>> read("README.md")
     ...
     """
