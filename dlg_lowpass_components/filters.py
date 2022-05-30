@@ -28,6 +28,10 @@ logger = logging.getLogger(__name__)
 # @param category PythonApp
 # @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterFFTNP/String/readonly/
 #     \~English Import direction for application class
+# @param[in] cparam/execution_time Execution Time/5/Float/readonly/False//False/
+#     \~English Estimated execution time
+# @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
+#     \~English Number of cores used
 # @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
@@ -128,6 +132,10 @@ class LPFilterFFTNP(BarrierAppDROP):
 # @param category PythonApp
 # @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterFFTFFTW/String/readonly/
 #     \~English Import direction for application class
+# @param[in] cparam/execution_time Execution Time/5/Float/readonly/False//False/
+#     \~English Estimated execution time
+# @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
+#     \~English Number of cores used
 # @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
@@ -177,6 +185,10 @@ class LPFilterFFTFFTW(LPFilterFFTNP):
 # @param category PythonApp
 # @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterFFTCuda/String/readonly/
 #     \~English Import direction for application class
+# @param[in] cparam/execution_time Execution Time/5/Float/readonly/False//False/
+#     \~English Estimated execution time
+# @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
+#     \~English Number of cores used
 # @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
@@ -262,6 +274,10 @@ class LPFilterFFTCuda(LPFilterFFTNP):
 # @param category PythonApp
 # @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterPointwiseNP/String/readonly/
 #     \~English Import direction for application class
+# @param[in] cparam/execution_time Execution Time/5/Float/readonly/False//False/
+#     \~English Estimated execution time
+# @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
+#     \~English Number of cores used
 # @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/

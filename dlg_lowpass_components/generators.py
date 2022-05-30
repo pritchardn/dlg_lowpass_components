@@ -28,6 +28,10 @@ logger = logging.getLogger(__name__)
 # @param category PythonApp
 # @param[in] cparam/appclass appclass/dlg_lowpass_components.LPSignalGenerator/String/readonly/
 #     \~English Import direction for application class
+# @param[in] cparam/execution_time Execution Time/5/Float/readonly/False//False/
+#     \~English Estimated execution time
+# @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
+#     \~English Number of cores used
 # @param[in] cparam/length Signal length/ /Integer/readwrite/
 #     \~English Length of the output signal
 # @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
@@ -141,6 +145,10 @@ class LPSignalGenerator(BarrierAppDROP):
 # @param category PythonApp
 # @param[in] cparam/appclass appclass/dlg_lowpass_components.LPWindowGenerator/String/readonly/
 #     \~English Import direction for application class
+# @param[in] cparam/execution_time Execution Time/5/Float/readonly/False//False/
+#     \~English Estimated execution time
+# @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
+#     \~English Number of cores used
 # @param[in] cparam/length Signal length/ /Integer/readwrite/
 #     \~English Length of the output signal
 # @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
@@ -224,7 +232,10 @@ class LPWindowGenerator(BarrierAppDROP):
 # @param category PythonApp
 # @param[in] cparam/appclass appclass/dlg_lowpass_components.LPAddNoise/String/readonly/
 #     \~English Import direction for application class
-
+# @param[in] cparam/execution_time Execution Time/5/Float/readonly/False//False/
+#     \~English Estimated execution time
+# @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
+#     \~English Number of cores used
 # @param[in] cparam/noise Average noise/ /Float/readwrite/
 #     \~English The average value of the injected noise signal
 # @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/

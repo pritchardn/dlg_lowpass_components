@@ -26,8 +26,26 @@
             "outputApplicationName": "",
             "inputApplicationType": "None",
             "outputApplicationType": "None",
-            "inputPorts": [],
-            "outputPorts": [],
+            "inputPorts": [
+                {
+                    "Id": "85466c6d-3509-4070-a257-ef01edbbc621",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing incoming signal (string dump of floats)"
+                }
+            ],
+            "outputPorts": [
+                {
+                    "Id": "0de829dd-167b-4fc3-8e37-aff78124cf92",
+                    "IdText": "signal",
+                    "text": "Signal",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing final signal (purely real (floats))"
+                }
+            ],
             "inputLocalPorts": [],
             "outputLocalPorts": [],
             "inputAppFields": [],
@@ -41,6 +59,102 @@
                     "description": "Import direction for application class",
                     "readonly": true,
                     "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Average noise",
+                    "name": "noise",
+                    "value": " ",
+                    "default": " ",
+                    "description": "The average value of the injected noise signal",
+                    "readonly": false,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Sample rate",
+                    "name": "samplerate",
+                    "value": " ",
+                    "default": " ",
+                    "description": "The sample rate of the signal",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Standard deviation",
+                    "name": "stddiv",
+                    "value": " ",
+                    "default": " ",
+                    "description": "The standard deviation of the noise signal",
+                    "readonly": false,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Noise frequency",
+                    "name": "frequency",
+                    "value": " ",
+                    "default": " ",
+                    "description": "The frequency of the noise",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Random seed",
+                    "name": "randomseed",
+                    "value": " ",
+                    "default": " ",
+                    "description": "Random seed of the noise generator",
+                    "readonly": false,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Noise multiplier",
+                    "name": "noisemultiplier",
+                    "value": " ",
+                    "default": " ",
+                    "description": "A gain factor for the injected noise (alpha).",
+                    "readonly": false,
+                    "type": "Float",
                     "precious": false,
                     "options": [],
                     "positional": false
@@ -107,6 +221,30 @@
                     "description": "Import direction for application class",
                     "readonly": true,
                     "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
                     "precious": false,
                     "options": [],
                     "positional": false
@@ -190,6 +328,30 @@
                     "positional": false
                 },
                 {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
                     "text": "Double Precision",
                     "name": "doubleprecision",
                     "value": " ",
@@ -263,6 +425,30 @@
                     "description": "Import direction for application class",
                     "readonly": true,
                     "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
                     "precious": false,
                     "options": [],
                     "positional": false
@@ -346,6 +532,30 @@
                     "positional": false
                 },
                 {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
                     "text": "Double Precision",
                     "name": "doubleprecision",
                     "value": " ",
@@ -402,6 +612,30 @@
                     "description": "Import direction for application class",
                     "readonly": true,
                     "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
                     "precious": false,
                     "options": [],
                     "positional": false
@@ -499,6 +733,30 @@
                     "description": "Import direction for application class",
                     "readonly": true,
                     "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
                     "precious": false,
                     "options": [],
                     "positional": false
