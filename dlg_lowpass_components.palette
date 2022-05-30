@@ -32,10 +32,9 @@
             "outputLocalPorts": [],
             "inputAppFields": [],
             "outputAppFields": [],
-            "fields": [],
-            "applicationArgs": [
+            "fields": [
                 {
-                    "text": "Application Class",
+                    "text": "appclass",
                     "name": "appclass",
                     "value": "dlg_lowpass_components.LPAddNoise",
                     "default": "dlg_lowpass_components.LPAddNoise",
@@ -47,6 +46,7 @@
                     "positional": false
                 }
             ],
+            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -98,10 +98,9 @@
             "outputLocalPorts": [],
             "inputAppFields": [],
             "outputAppFields": [],
-            "fields": [],
-            "applicationArgs": [
+            "fields": [
                 {
-                    "text": "Application Class",
+                    "text": "appclass",
                     "name": "appclass",
                     "value": "dlg_lowpass_components.LPFilterFFTCuda",
                     "default": "dlg_lowpass_components.LPFilterFFTCuda",
@@ -125,6 +124,7 @@
                     "positional": false
                 }
             ],
+            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -176,10 +176,9 @@
             "outputLocalPorts": [],
             "inputAppFields": [],
             "outputAppFields": [],
-            "fields": [],
-            "applicationArgs": [
+            "fields": [
                 {
-                    "text": "Application Class",
+                    "text": "appclass",
                     "name": "appclass",
                     "value": "dlg_lowpass_components.LPFilterFFTFFTW",
                     "default": "dlg_lowpass_components.LPFilterFFTFFTW",
@@ -203,6 +202,7 @@
                     "positional": false
                 }
             ],
+            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -254,10 +254,9 @@
             "outputLocalPorts": [],
             "inputAppFields": [],
             "outputAppFields": [],
-            "fields": [],
-            "applicationArgs": [
+            "fields": [
                 {
-                    "text": "Application Class",
+                    "text": "appclass",
                     "name": "appclass",
                     "value": "dlg_lowpass_components.LPFilterFFTNP",
                     "default": "dlg_lowpass_components.LPFilterFFTNP",
@@ -281,6 +280,7 @@
                     "positional": false
                 }
             ],
+            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -332,10 +332,9 @@
             "outputLocalPorts": [],
             "inputAppFields": [],
             "outputAppFields": [],
-            "fields": [],
-            "applicationArgs": [
+            "fields": [
                 {
-                    "text": "Application Class",
+                    "text": "appclass",
                     "name": "appclass",
                     "value": "dlg_lowpass_components.LPFilterPointwiseNP",
                     "default": "dlg_lowpass_components.LPFilterPointwiseNP",
@@ -359,6 +358,7 @@
                     "positional": false
                 }
             ],
+            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -393,10 +393,9 @@
             "outputLocalPorts": [],
             "inputAppFields": [],
             "outputAppFields": [],
-            "fields": [],
-            "applicationArgs": [
+            "fields": [
                 {
-                    "text": "Application Class",
+                    "text": "appclass",
                     "name": "appclass",
                     "value": "dlg_lowpass_components.LPSignalGenerator",
                     "default": "dlg_lowpass_components.LPSignalGenerator",
@@ -456,6 +455,7 @@
                     "positional": false
                 }
             ],
+            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -490,10 +490,9 @@
             "outputLocalPorts": [],
             "inputAppFields": [],
             "outputAppFields": [],
-            "fields": [],
-            "applicationArgs": [
+            "fields": [
                 {
-                    "text": "Application Class",
+                    "text": "appclass",
                     "name": "appclass",
                     "value": "dlg_lowpass_components.LPWindowGenerator",
                     "default": "dlg_lowpass_components.LPWindowGenerator",
@@ -541,6 +540,7 @@
                     "positional": false
                 }
             ],
+            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         }

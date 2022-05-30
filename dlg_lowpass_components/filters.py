@@ -26,9 +26,9 @@ logger = logging.getLogger(__name__)
 # @details Implements a lowpass filter via fft with numpy
 # @par EAGLE_START
 # @param category PythonApp
-# @param[in] param/appclass Application Class/dlg_lowpass_components.LPFilterFFTNP/String/readonly/
+# @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterFFTNP/String/readonly/
 #     \~English Import direction for application class
-# @param[in] param/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
@@ -126,9 +126,9 @@ class LPFilterFFTNP(BarrierAppDROP):
 # @details Implements a lowpass filter via fft with FFTW
 # @par EAGLE_START
 # @param category PythonApp
-# @param[in] param/appclass Application Class/dlg_lowpass_components.LPFilterFFTFFTW/String/readonly/
+# @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterFFTFFTW/String/readonly/
 #     \~English Import direction for application class
-# @param[in] param/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
@@ -175,9 +175,9 @@ class LPFilterFFTFFTW(LPFilterFFTNP):
 # @details Implements a lowpass filter via fft with cuda
 # @par EAGLE_START
 # @param category PythonApp
-# @param[in] param/appclass Application Class/dlg_lowpass_components.LPFilterFFTCuda/String/readonly/
+# @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterFFTCuda/String/readonly/
 #     \~English Import direction for application class
-# @param[in] param/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
@@ -260,9 +260,9 @@ class LPFilterFFTCuda(LPFilterFFTNP):
 # @details Implements a lowpass filter via pointwise convolution with numpy
 # @par EAGLE_START
 # @param category PythonApp
-# @param[in] param/appclass Application Class/dlg_lowpass_components.LPFilterPointwiseNP/String/readonly/
+# @param[in] cparam/appclass appclass/dlg_lowpass_components.LPFilterPointwiseNP/String/readonly/
 #     \~English Import direction for application class
-# @param[in] param/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)

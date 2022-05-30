@@ -26,15 +26,15 @@ logger = logging.getLogger(__name__)
 #
 # @par EAGLE_START
 # @param category PythonApp
-# @param[in] param/appclass Application Class/dlg_lowpass_components.LPSignalGenerator/String/readonly/
+# @param[in] cparam/appclass appclass/dlg_lowpass_components.LPSignalGenerator/String/readonly/
 #     \~English Import direction for application class
-# @param[in] param/length Signal length/ /Integer/readwrite/
+# @param[in] cparam/length Signal length/ /Integer/readwrite/
 #     \~English Length of the output signal
-# @param[in] param/samplerate Sample rate/ /Integer/readwrite/
+# @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
 #     \~English The sample rate of the signal
-# @param[in] param/frequencies Signal frequencies/ /Json/readwrite/
+# @param[in] cparam/frequencies Signal frequencies/ /Json/readwrite/
 #     \~English A dictionary containing a single list of values - the frequencies incorporated in the original signal.
-# @param[in] param/noise_params Noise parameters/ /Json/readwrite/
+# @param[in] cparam/noise_params Noise parameters/ /Json/readwrite/
 #     \~English A dictionary containing several values defining the properties of an interleaved noise. mean, std-deviation, frequency, random seed, alpha
 # @param[out] port/signal Signal/float/
 #     \~English Numpy array containing final signal (purely real (floats))
@@ -139,13 +139,13 @@ class LPSignalGenerator(BarrierAppDROP):
 # @details Generates a Hann window for low-pass filtering.
 # @par EAGLE_START
 # @param category PythonApp
-# @param[in] param/appclass Application Class/dlg_lowpass_components.LPWindowGenerator/String/readonly/
+# @param[in] cparam/appclass appclass/dlg_lowpass_components.LPWindowGenerator/String/readonly/
 #     \~English Import direction for application class
-# @param[in] param/length Signal length/ /Integer/readwrite/
+# @param[in] cparam/length Signal length/ /Integer/readwrite/
 #     \~English Length of the output signal
-# @param[in] param/samplerate Sample rate/ /Integer/readwrite/
+# @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
 #     \~English The sample rate of the signal
-# @param[in] param/cutoff Filter cutoff/ /Integer/readwrite/
+# @param[in] cparam/cutoff Filter cutoff/ /Integer/readwrite/
 #     \~English The frequency of the low-pass filter
 # @param[out] port/window Window/float/
 #     \~English Numpy array containing final signal (purely real (floats))
@@ -222,20 +222,20 @@ class LPWindowGenerator(BarrierAppDROP):
 # @details Component to add additional noise to a signal array.
 # @par EAGLE_START
 # @param category PythonApp
-# @param[in] param/appclass Application Class/dlg_lowpass_components.LPAddNoise/String/readonly/
+# @param[in] cparam/appclass appclass/dlg_lowpass_components.LPAddNoise/String/readonly/
 #     \~English Import direction for application class
 
-# @param[in] param/noise Average noise/ /Float/readwrite/
+# @param[in] cparam/noise Average noise/ /Float/readwrite/
 #     \~English The average value of the injected noise signal
-# @param[in] param/samplerate Sample rate/ /Integer/readwrite/
+# @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
 #     \~English The sample rate of the signal
-# @param[in] param/stddiv Standard deviation/ /Float/readwrite/
+# @param[in] cparam/stddiv Standard deviation/ /Float/readwrite/
 #     \~English The standard deviation of the noise signal
-# @param[in] param/frequency Noise frequency/ /Integer/readwrite/
+# @param[in] cparam/frequency Noise frequency/ /Integer/readwrite/
 #     \~English The frequency of the noise
-# @param[in] param/randomseed Random seed/ /Integer/readwrite/
+# @param[in] cparam/randomseed Random seed/ /Integer/readwrite/
 #     \~English Random seed of the noise generator
-# @param[in] param/noisemultiplier Noise multiplier/ /Float/readwrite/
+# @param[in] cparam/noisemultiplier Noise multiplier/ /Float/readwrite/
 #     \~English A gain factor for the injected noise (alpha).
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
