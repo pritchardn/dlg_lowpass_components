@@ -32,11 +32,11 @@ logger = logging.getLogger(__name__)
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/length Signal length/ /Integer/readwrite/
+# @param[in] cparam/length Signal length/256/Integer/readwrite/
 #     \~English Length of the output signal
-# @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
+# @param[in] cparam/samplerate Sample rate/5000/Integer/readwrite/
 #     \~English The sample rate of the signal
-# @param[in] cparam/frequencies Signal frequencies/ /Json/readwrite/
+# @param[in] cparam/frequencies Signal frequencies/{}/Json/readwrite/
 #     \~English A dictionary containing a single list of values - the frequencies incorporated in the original signal.
 # @param[in] cparam/noise_params Noise parameters/ /Json/readwrite/
 #     \~English A dictionary containing several values defining the properties of an interleaved noise. mean, std-deviation, frequency, random seed, alpha
@@ -149,11 +149,11 @@ class LPSignalGenerator(BarrierAppDROP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/length Signal length/ /Integer/readwrite/
+# @param[in] cparam/length Signal length/256/Integer/readwrite/
 #     \~English Length of the output signal
-# @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
+# @param[in] cparam/samplerate Sample rate/5000/Integer/readwrite/
 #     \~English The sample rate of the signal
-# @param[in] cparam/cutoff Filter cutoff/ /Integer/readwrite/
+# @param[in] cparam/cutoff Filter cutoff/600/Integer/readwrite/
 #     \~English The frequency of the low-pass filter
 # @param[out] port/window Window/float/
 #     \~English Numpy array containing final signal (purely real (floats))
@@ -236,17 +236,17 @@ class LPWindowGenerator(BarrierAppDROP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/noise Average noise/ /Float/readwrite/
+# @param[in] cparam/noise Average noise/0.0/Float/readwrite/
 #     \~English The average value of the injected noise signal
-# @param[in] cparam/samplerate Sample rate/ /Integer/readwrite/
+# @param[in] cparam/samplerate Sample rate/5000/Integer/readwrite/
 #     \~English The sample rate of the signal
-# @param[in] cparam/stddiv Standard deviation/ /Float/readwrite/
+# @param[in] cparam/stddiv Standard deviation/1.0/Float/readwrite/
 #     \~English The standard deviation of the noise signal
-# @param[in] cparam/frequency Noise frequency/ /Integer/readwrite/
+# @param[in] cparam/frequency Noise frequency/1200/Integer/readwrite/
 #     \~English The frequency of the noise
-# @param[in] cparam/randomseed Random seed/ /Integer/readwrite/
+# @param[in] cparam/randomseed Random seed/42/Integer/readwrite/
 #     \~English Random seed of the noise generator
-# @param[in] cparam/noisemultiplier Noise multiplier/ /Float/readwrite/
+# @param[in] cparam/noisemultiplier Noise multiplier/0.1/Float/readwrite/
 #     \~English A gain factor for the injected noise (alpha).
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)

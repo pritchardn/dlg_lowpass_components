@@ -32,7 +32,7 @@ logger = logging.getLogger(__name__)
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/false/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
@@ -136,7 +136,7 @@ class LPFilterFFTNP(BarrierAppDROP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/false/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
@@ -189,7 +189,7 @@ class LPFilterFFTFFTW(LPFilterFFTNP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/true/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
@@ -278,7 +278,7 @@ class LPFilterFFTCuda(LPFilterFFTNP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/ /Boolean/readwrite/
+# @param[in] cparam/doubleprecision Double Precision/false/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
