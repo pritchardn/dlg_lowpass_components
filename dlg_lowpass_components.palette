@@ -138,7 +138,7 @@
                     "positional": false
                 },
                 {
-                    "text": "Random seed",
+                    "text": "Random randomseed",
                     "name": "randomseed",
                     "value": "42",
                     "default": "42",
@@ -154,7 +154,7 @@
                     "name": "noisemultiplier",
                     "value": "0.1",
                     "default": "0.1",
-                    "description": "A gain factor for the injected noise (alpha).",
+                    "description": "A gain factor for the injected noise (noisemultiplier).",
                     "readonly": false,
                     "type": "Float",
                     "precious": false,
@@ -674,8 +674,8 @@
                 {
                     "text": "Signal frequencies",
                     "name": "frequencies",
-                    "value": "{}",
-                    "default": "{}",
+                    "value": "{\"values\": [440, 800, 1000, 2000]}",
+                    "default": "{\"values\": [440, 800, 1000, 2000]}",
                     "description": "A dictionary containing a single list of values - the frequencies incorporated in the original signal.",
                     "readonly": false,
                     "type": "Json",
@@ -688,7 +688,7 @@
                     "name": "noise_params",
                     "value": "{}",
                     "default": "{}",
-                    "description": "A dictionary containing several values defining the properties of an interleaved noise. mean, std-deviation, frequency, random seed, alpha",
+                    "description": "A dictionary containing several values defining the properties of an interleaved noise. noise, stddiv-deviation, frequency, random randomseed, noisemultiplier",
                     "readonly": false,
                     "type": "Json",
                     "precious": false,

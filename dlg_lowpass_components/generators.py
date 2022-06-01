@@ -36,7 +36,7 @@ logger = logging.getLogger(__name__)
 #     \~English Length of the output signal
 # @param[in] aparam/samplerate Sample rate/5000/Integer/readwrite/
 #     \~English The sample rate of the signal
-# @param[in] aparam/frequencies Signal frequencies/{}/Json/readwrite/
+# @param[in] aparam/frequencies Signal frequencies/{"values": [440, 800, 1000, 2000]}/Json/readwrite/
 #     \~English A dictionary containing a single list of values - the frequencies incorporated in the original signal.
 # @param[in] aparam/noise_params Noise parameters/{}/Json/readwrite/
 #     \~English A dictionary containing several values defining the properties of an interleaved noise. noise, stddiv-deviation, frequency, random randomseed, noisemultiplier
