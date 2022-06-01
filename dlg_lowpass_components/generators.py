@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 # @param[in] aparam/frequencies Signal frequencies/{}/Json/readwrite/
 #     \~English A dictionary containing a single list of values - the frequencies incorporated in the original signal.
 # @param[in] aparam/noise_params Noise parameters/{}/Json/readwrite/
-#     \~English A dictionary containing several values defining the properties of an interleaved noise. mean, std-deviation, frequency, random seed, alpha
+#     \~English A dictionary containing several values defining the properties of an interleaved noise. noise, stddiv-deviation, frequency, random randomseed, noisemultiplier
 # @param[out] port/signal Signal/float/
 #     \~English Numpy array containing final signal (purely real (floats))
 # @par EAGLE_END
@@ -58,11 +58,11 @@ class LPSignalGenerator(BarrierAppDROP):
 
     # default values
     length = dlg_int_param("length", 256)
-    srate = dlg_int_param("samplerate", 5000)
-    freqs = dlg_dict_param("frequencies", {"values": [440, 800, 1000, 2000]})
+    samplerate = dlg_int_param("samplerate", 5000)
+    frequencies = dlg_dict_param("frequencies", {"values": [440, 800, 1000, 2000]})
     noise = dlg_dict_param(
         "noise", {}
-    )  # {'mean': 0.0, 'std': 1.0, 'freq': 666, 'seed': 42})
+    )  # {'noise': 0.0, 'stddiv': 1.0, 'frequency': 666, 'randomseed': 42})
     series = None
 
     def initialize(self, **kwargs):
@@ -78,7 +78,7 @@ class LPSignalGenerator(BarrierAppDROP):
         :param std: The standard deviation of the value
         :param freq: The frequency of the noisy signal
         :param sample_rate: The sample rate of the input series
-        :param seed: The random seed
+        :param seed: The random randomseed
         :param alpha: The multiplier
         :return: The input series with noisy values added
         """
@@ -95,9 +95,9 @@ class LPSignalGenerator(BarrierAppDROP):
         :return: Numpy array of signal values.
         """
         series = np.zeros(self.length, dtype=np.float64)
-        for freq in self.freqs["values"]:
+        for freq in self.frequencies["values"]:
             for i in range(self.length):
-                series[i] += np.sin(2 * np.pi * i * freq / self.srate)
+                series[i] += np.sin(2 * np.pi * i * freq / self.samplerate)
         return series
 
     def run(self):
@@ -110,16 +110,16 @@ class LPSignalGenerator(BarrierAppDROP):
             raise Exception("At least one output required for %r" % self)
         self.series = self.gen_sig()
         if len(self.noise) > 0:
-            if "alpha" in self.noise:
-                self.noise["alpha"] = 1 / self.noise["alpha"]
+            if "noisemultiplier" in self.noise:
+                self.noise["noisemultiplier"] = 1 / self.noise["noisemultiplier"]
             self.series = self.add_noise(
                 self.series,
-                self.noise["mean"],
-                self.noise["std"],
-                self.noise["freq"],
-                self.srate,
-                self.noise["seed"],
-                self.noise.get("alpha", 0.1),
+                self.noise["noise"],
+                self.noise["stddiv"],
+                self.noise["frequency"],
+                self.samplerate,
+                self.noise["randomseed"],
+                self.noise.get("noisemultiplier", 0.1),
             )
 
         data = self.series.tobytes()
@@ -131,8 +131,8 @@ class LPSignalGenerator(BarrierAppDROP):
         # This will do for now
         return {
             "length": self.length,
-            "sample_rate": self.srate,
-            "frequencies": self.freqs,
+            "sample_rate": self.samplerate,
+            "frequencies": self.frequencies,
             "status": self.status,
             "system": system_summary(),
         }
@@ -174,7 +174,7 @@ class LPWindowGenerator(BarrierAppDROP):
     # default values
     length = dlg_int_param("length", 256)
     cutoff = dlg_int_param("cutoff", 600)
-    srate = dlg_int_param("samplerate", 5000)
+    samplerate = dlg_int_param("samplerate", 5000)
     series = None
 
     def sinc(self, x_val: np.float64):
@@ -191,7 +191,7 @@ class LPWindowGenerator(BarrierAppDROP):
         Generates the window values.
         :return: Numpy array of window series.
         """
-        alpha = 2 * self.cutoff / self.srate
+        alpha = 2 * self.cutoff / self.samplerate
         win = np.zeros(self.length, dtype=np.float64)
         for i in range(int(self.length)):
             ham = 0.54 - 0.46 * np.cos(
@@ -219,7 +219,7 @@ class LPWindowGenerator(BarrierAppDROP):
         output = dict()
         output["length"] = self.length
         output["cutoff"] = self.cutoff
-        output["sample_rate"] = self.srate
+        output["sample_rate"] = self.samplerate
         output["status"] = self.status
         output["system"] = system_summary()
         return output
@@ -244,10 +244,10 @@ class LPWindowGenerator(BarrierAppDROP):
 #     \~English The standard deviation of the noise signal
 # @param[in] aparam/frequency Noise frequency/1200/Integer/readwrite/
 #     \~English The frequency of the noise
-# @param[in] aparam/randomseed Random seed/42/Integer/readwrite/
+# @param[in] aparam/randomseed Random randomseed/42/Integer/readwrite/
 #     \~English Random seed of the noise generator
 # @param[in] aparam/noisemultiplier Noise multiplier/0.1/Float/readwrite/
-#     \~English A gain factor for the injected noise (alpha).
+#     \~English A gain factor for the injected noise (noisemultiplier).
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
 # @param[out] port/signal Signal/float/
@@ -267,12 +267,12 @@ class LPAddNoise(BarrierAppDROP):
     )
 
     # default values
-    mean = dlg_float_param("noise", 0.0)
-    std = dlg_float_param("stddiv", 1.0)
-    freq = dlg_int_param("frequency", 1200)
-    srate = dlg_int_param("samplerate", 5000)
-    seed = dlg_int_param("randomseed", 42)
-    alpha = dlg_float_param("noisemultiplier", 0.1)
+    noise = dlg_float_param("noise", 0.0)
+    stddiv = dlg_float_param("stddiv", 1.0)
+    frequency = dlg_int_param("frequency", 1200)
+    samplerate = dlg_int_param("samplerate", 5000)
+    randomseed = dlg_int_param("randomseed", 42)
+    noisemultiplier = dlg_float_param("noisemultiplier", 0.1)
     signal = np.empty([1])
 
     def add_noise(self):
@@ -280,12 +280,12 @@ class LPAddNoise(BarrierAppDROP):
         Adds noise at a specified frequency.
         :return: Modified signal
         """
-        np.random.seed(self.seed)
-        samples = self.alpha * np.random.normal(
-            self.mean, self.std, size=len(self.signal)
+        np.random.seed(self.randomseed)
+        samples = self.noisemultiplier * np.random.normal(
+            self.noise, self.stddiv, size=len(self.signal)
         )
         for i in range(len(self.signal)):
-            samples[i] += np.sin(2 * np.pi * i * self.freq / self.srate)
+            samples[i] += np.sin(2 * np.pi * i * self.frequency / self.samplerate)
 
         out_array = np.empty(self.signal.shape)
         np.add(self.signal, samples, out=out_array)
@@ -321,11 +321,11 @@ class LPAddNoise(BarrierAppDROP):
 
     def generate_recompute_data(self):
         return {
-            "mean": self.mean,
-            "std": self.std,
-            "sample_rate": self.srate,
-            "seed": self.seed,
-            "alpha": self.alpha,
+            "noise": self.noise,
+            "stddiv": self.stddiv,
+            "sample_rate": self.samplerate,
+            "randomseed": self.randomseed,
+            "noisemultiplier": self.noisemultiplier,
             "system": system_summary(),
             "status": self.status,
         }

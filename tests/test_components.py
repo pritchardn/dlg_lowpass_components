@@ -39,7 +39,7 @@ class TestLPSignalGenerator(unittest.TestCase):
         self.assertEqual(new_length * 8, len(signal))
 
     def test_added_noise(self):
-        noise_params = {"mean": 0.0, "std": 1.0, "freq": 666, "seed": 42}
+        noise_params = {"noise": 0.0, "stddiv": 1.0, "frequency": 666, "randomseed": 42}
         noisy_generator = LPSignalGenerator("a", "a", noise=noise_params)
         vanilla_generator = LPSignalGenerator("A", "A")
         noisy_signal = _run_component(noisy_generator)
@@ -50,7 +50,7 @@ class TestLPSignalGenerator(unittest.TestCase):
 
     def test_changed_frequency(self):
         new_frequency = {"values": [440, 900, 1100, 1900, 2400]}
-        generator = LPSignalGenerator("a", "a", freqs=new_frequency)
+        generator = LPSignalGenerator("a", "a", frequencies=new_frequency)
         vanilla_generator = LPSignalGenerator("A", "A")
         signal = _run_component(generator)
         vanilla_signal = _run_component(vanilla_generator)
@@ -87,7 +87,7 @@ class TestLPWindowGenerator(unittest.TestCase):
 
     def test_change_srate(self):
         new_srate = 4500
-        generator = LPWindowGenerator("a", "a", srate=new_srate)
+        generator = LPWindowGenerator("a", "a", samplerate=new_srate)
         vanilla_generator = LPWindowGenerator("A", "A")
         signal = _run_component(generator)
         vanilla_signal = _run_component(vanilla_generator)
@@ -98,7 +98,7 @@ class TestLPWindowGenerator(unittest.TestCase):
 
 class TestLPNoiseGenerator(unittest.TestCase):
     def test_compare_to_SignalGen(self):
-        noise_params = {"mean": 0.0, "std": 1.0, "freq": 1200, "seed": 42}
+        noise_params = {"noise": 0.0, "stddiv": 1.0, "frequency": 1200, "randomseed": 42}
         noisy_generator = LPSignalGenerator("a", "a", noise=noise_params)
         noisy_signal = _run_component(noisy_generator)
 
@@ -156,7 +156,7 @@ class TestLPFilterFFTNP(unittest.TestCase):
         )
 
     def test_precision(self):
-        float_filter = LPFilterFFTNP("a", "a", double_prec=False)
+        float_filter = LPFilterFFTNP("a", "a", doubleprecision=False)
         double_filter = LPFilterFFTNP("a", "a")
         float_signal, _ = _run_filter(self, float_filter)
         double_signal, _ = _run_filter(self, double_filter)
@@ -174,7 +174,7 @@ class TestLPFilterFFTFFTW(unittest.TestCase):
         )
 
     def test_precision(self):
-        float_filter = LPFilterFFTFFTW("a", "a", double_prec=False)
+        float_filter = LPFilterFFTFFTW("a", "a", doubleprecision=False)
         double_filter = LPFilterFFTFFTW("a", "a")
         float_signal, _ = _run_filter(self, float_filter)
         double_signal, _ = _run_filter(self, double_filter)
@@ -193,7 +193,7 @@ class TestLPFilterFFTCuda(unittest.TestCase):
         )
 
     def test_precision(self):
-        float_filter = LPFilterFFTCuda("a", "a", double_prec=False)
+        float_filter = LPFilterFFTCuda("a", "a", doubleprecision=False)
         double_filter = LPFilterFFTCuda("a", "a")
         float_signal, _ = _run_filter(self, float_filter)
         double_signal, _ = _run_filter(self, double_filter)
@@ -211,7 +211,7 @@ class TestLPFilterPointwiseNP(unittest.TestCase):
         )
 
     def test_precision(self):
-        float_filter = LPFilterPointwiseNP("a", "a", double_prec=False)
+        float_filter = LPFilterPointwiseNP("a", "a", doubleprecision=False)
         double_filter = LPFilterPointwiseNP("a", "a")
         float_signal, _ = _run_filter(self, float_filter)
         double_signal, _ = _run_filter(self, double_filter)

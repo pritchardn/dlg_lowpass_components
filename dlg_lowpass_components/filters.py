@@ -60,13 +60,13 @@ class LPFilterFFTNP(BarrierAppDROP):
     }
     precision = {}
     # default values
-    double_prec = dlg_bool_param("doubleprecision", True)
+    doubleprecision = dlg_bool_param("doubleprecision", True)
     series = []
     output = np.zeros([1])
 
     def initialize(self, **kwargs):
         super().initialize(**kwargs)
-        if self.double_prec:
+        if self.doubleprecision:
             self.precision = self.PRECISIONS["double"]
         else:
             self.precision = self.PRECISIONS["single"]
