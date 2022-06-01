@@ -86,7 +86,9 @@
                     "precious": false,
                     "options": [],
                     "positional": false
-                },
+                }
+            ],
+            "applicationArgs": [
                 {
                     "text": "Average noise",
                     "name": "noise",
@@ -160,7 +162,6 @@
                     "positional": false
                 }
             ],
-            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -190,9 +191,9 @@
                     "description": " Numpy array containing incoming signal (string dump of floats)"
                 },
                 {
-                    "Id": "c7a3376a-e474-41b0-8638-c7f88d4c8f71",
+                    "Id": "292dbf16-5b1d-4ab4-b298-0ba107afe84f",
                     "IdText": "window",
-                    "text": "Signal",
+                    "text": "Window",
                     "event": false,
                     "type": "float",
                     "description": " Numpy array containing the filter window (string dump of floats)"
@@ -248,7 +249,9 @@
                     "precious": false,
                     "options": [],
                     "positional": false
-                },
+                }
+            ],
+            "applicationArgs": [
                 {
                     "text": "Double Precision",
                     "name": "doubleprecision",
@@ -262,7 +265,6 @@
                     "positional": false
                 }
             ],
-            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -292,9 +294,9 @@
                     "description": " Numpy array containing incoming signal (string dump of floats)"
                 },
                 {
-                    "Id": "54198c1f-bbdc-439c-9d72-5658432b35e7",
+                    "Id": "ede82acc-2d28-4660-9fd2-46a020f66f60",
                     "IdText": "window",
-                    "text": "Signal",
+                    "text": "Window",
                     "event": false,
                     "type": "float",
                     "description": " Numpy array containing the filter window (string dump of floats)"
@@ -350,7 +352,9 @@
                     "precious": false,
                     "options": [],
                     "positional": false
-                },
+                }
+            ],
+            "applicationArgs": [
                 {
                     "text": "Double Precision",
                     "name": "doubleprecision",
@@ -364,7 +368,6 @@
                     "positional": false
                 }
             ],
-            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -394,9 +397,9 @@
                     "description": " Numpy array containing incoming signal (string dump of floats)"
                 },
                 {
-                    "Id": "1e86f003-7a1d-43ae-bac8-62dfa19714f5",
+                    "Id": "68fe4bcc-be25-445e-92de-9f939c9255f5",
                     "IdText": "window",
-                    "text": "Signal",
+                    "text": "Window",
                     "event": false,
                     "type": "float",
                     "description": " Numpy array containing the filter window (string dump of floats)"
@@ -452,7 +455,9 @@
                     "precious": false,
                     "options": [],
                     "positional": false
-                },
+                }
+            ],
+            "applicationArgs": [
                 {
                     "text": "Double Precision",
                     "name": "doubleprecision",
@@ -466,7 +471,6 @@
                     "positional": false
                 }
             ],
-            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -496,9 +500,9 @@
                     "description": " Numpy array containing incoming signal (string dump of floats)"
                 },
                 {
-                    "Id": "53b087b5-2b40-492d-ab3b-bb431229a7b2",
+                    "Id": "1b173799-fddd-428c-8572-ca9a6dc43142",
                     "IdText": "window",
-                    "text": "Signal",
+                    "text": "Window",
                     "event": false,
                     "type": "float",
                     "description": " Numpy array containing the filter window (string dump of floats)"
@@ -554,7 +558,9 @@
                     "precious": false,
                     "options": [],
                     "positional": false
-                },
+                }
+            ],
+            "applicationArgs": [
                 {
                     "text": "Double Precision",
                     "name": "doubleprecision",
@@ -568,7 +574,6 @@
                     "positional": false
                 }
             ],
-            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -639,7 +644,9 @@
                     "precious": false,
                     "options": [],
                     "positional": false
-                },
+                }
+            ],
+            "applicationArgs": [
                 {
                     "text": "Signal length",
                     "name": "length",
@@ -679,8 +686,8 @@
                 {
                     "text": "Noise parameters",
                     "name": "noise_params",
-                    "value": " ",
-                    "default": " ",
+                    "value": "{}",
+                    "default": "{}",
                     "description": "A dictionary containing several values defining the properties of an interleaved noise. mean, std-deviation, frequency, random seed, alpha",
                     "readonly": false,
                     "type": "Json",
@@ -689,7 +696,6 @@
                     "positional": false
                 }
             ],
-            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         },
@@ -760,7 +766,9 @@
                     "precious": false,
                     "options": [],
                     "positional": false
-                },
+                }
+            ],
+            "applicationArgs": [
                 {
                     "text": "Signal length",
                     "name": "length",
@@ -798,7 +806,6 @@
                     "positional": false
                 }
             ],
-            "applicationArgs": [],
             "git_url": "dlg_lowpass_components",
             "sha": "d6ecc621"
         }

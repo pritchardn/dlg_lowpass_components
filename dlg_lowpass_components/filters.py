@@ -32,11 +32,11 @@ logger = logging.getLogger(__name__)
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/false/Boolean/readwrite/
+# @param[in] aparam/doubleprecision Double Precision/false/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
-# @param[in] port/window Signal/float/
+# @param[in] port/window Window/float/
 #     \~English Numpy array containing the filter window (string dump of floats)
 # @param[out] port/signal Signal/Complex/
 #     \~English Numpy array containing final signal (complex)
@@ -136,11 +136,11 @@ class LPFilterFFTNP(BarrierAppDROP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/false/Boolean/readwrite/
+# @param[in] aparam/doubleprecision Double Precision/false/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
-# @param[in] port/window Signal/float/
+# @param[in] port/window Window/float/
 #     \~English Numpy array containing the filter window (string dump of floats)
 # @param[out] port/signal Signal/Complex/
 #     \~English Numpy array containing final signal (complex)
@@ -189,11 +189,11 @@ class LPFilterFFTFFTW(LPFilterFFTNP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/true/Boolean/readwrite/
+# @param[in] aparam/doubleprecision Double Precision/true/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
-# @param[in] port/window Signal/float/
+# @param[in] port/window Window/float/
 #     \~English Numpy array containing the filter window (string dump of floats)
 # @param[out] port/signal Signal/Complex/
 #     \~English Numpy array containing final signal (complex)
@@ -278,11 +278,11 @@ class LPFilterFFTCuda(LPFilterFFTNP):
 #     \~English Estimated execution time
 # @param[in] cparam/num_cpus No. of CPUs/1/Integer/readonly/False//False/
 #     \~English Number of cores used
-# @param[in] cparam/doubleprecision Double Precision/false/Boolean/readwrite/
+# @param[in] aparam/doubleprecision Double Precision/false/Boolean/readwrite/
 #     \~English Whether to use double (true) or float (false) precision.
 # @param[in] port/signal Signal/float/
 #     \~English Numpy array containing incoming signal (string dump of floats)
-# @param[in] port/window Signal/float/
+# @param[in] port/window Window/float/
 #     \~English Numpy array containing the filter window (string dump of floats)
 # @param[out] port/signal Signal/Complex/
 #     \~English Numpy array containing final signal (complex)
