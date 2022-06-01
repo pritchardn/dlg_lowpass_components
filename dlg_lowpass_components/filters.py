@@ -60,7 +60,7 @@ class LPFilterFFTNP(BarrierAppDROP):
     }
     precision = {}
     # default values
-    double_prec = dlg_bool_param("doublePrec", True)
+    double_prec = dlg_bool_param("doubleprecision", True)
     series = []
     output = np.zeros([1])
 

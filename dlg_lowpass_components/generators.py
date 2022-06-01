@@ -267,12 +267,12 @@ class LPAddNoise(BarrierAppDROP):
     )
 
     # default values
-    mean = dlg_float_param("avg_noise", 0.0)
-    std = dlg_float_param("std_deviation", 1.0)
+    mean = dlg_float_param("noise", 0.0)
+    std = dlg_float_param("stddiv", 1.0)
     freq = dlg_int_param("frequency", 1200)
-    srate = dlg_int_param("sample_rate", 5000)
-    seed = dlg_int_param("random_seed", 42)
-    alpha = dlg_float_param("noise_multiplier", 0.1)
+    srate = dlg_int_param("samplerate", 5000)
+    seed = dlg_int_param("randomseed", 42)
+    alpha = dlg_float_param("noisemultiplier", 0.1)
     signal = np.empty([1])
 
     def add_noise(self):
