@@ -1,6 +1,7 @@
 """
 dlg_lowpass_components filters
 """
+from .utils import PRECISIONS
 import logging
 
 import numpy as np
@@ -54,10 +55,6 @@ class LPFilterFFTNP(BarrierAppDROP):
         [dlg_streaming_input("binary/*")],
     )
 
-    PRECISIONS = {
-        "double": {"float": np.float64, "complex": np.complex128},
-        "single": {"float": np.float32, "complex": np.complex64},
-    }
     precision = {}
     # default values
     doubleprecision = dlg_bool_param("doubleprecision", True)
@@ -67,9 +64,9 @@ class LPFilterFFTNP(BarrierAppDROP):
     def initialize(self, **kwargs):
         super().initialize(**kwargs)
         if self.doubleprecision:
-            self.precision = self.PRECISIONS["double"]
+            self.precision = PRECISIONS["double"]
         else:
-            self.precision = self.PRECISIONS["single"]
+            self.precision = PRECISIONS["single"]
 
     def get_inputs(self):
         """

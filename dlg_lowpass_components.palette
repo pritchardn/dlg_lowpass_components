@@ -169,6 +169,121 @@
             "category": "PythonApp",
             "drawOrderHint": 0,
             "key": -2,
+            "text": "LPCorrelate",
+            "description": "Component to compute correlation between two numpy series",
+            "collapsed": false,
+            "showPorts": false,
+            "streaming": false,
+            "subject": null,
+            "selected": false,
+            "expanded": false,
+            "inputApplicationName": "",
+            "outputApplicationName": "",
+            "inputApplicationType": "None",
+            "outputApplicationType": "None",
+            "inputPorts": [
+                {
+                    "Id": "4956d0ce-814b-4480-8be2-3b34b0d44e3b",
+                    "IdText": "signal",
+                    "text": "Signal A",
+                    "event": false,
+                    "type": "Complex",
+                    "description": " Numpy array containing incoming signal (string dump of floats)"
+                },
+                {
+                    "Id": "9c779ad7-18df-4b15-83a7-d6670ddda575",
+                    "IdText": "signal",
+                    "text": "Signal B",
+                    "event": false,
+                    "type": "Complex",
+                    "description": " Numpy array containing incoming signal (string dump of floats)"
+                }
+            ],
+            "outputPorts": [
+                {
+                    "Id": "6b747a71-fb98-4ebb-844a-4115fde56dae",
+                    "IdText": "correlation",
+                    "text": "Correlation",
+                    "event": false,
+                    "type": "float",
+                    "description": " Numpy array containing a single value, the (normalized) cross correlation between two series."
+                }
+            ],
+            "inputLocalPorts": [],
+            "outputLocalPorts": [],
+            "inputAppFields": [],
+            "outputAppFields": [],
+            "fields": [
+                {
+                    "text": "appclass",
+                    "name": "appclass",
+                    "value": "dlg_lowpass_components.LPCorrelate",
+                    "default": "dlg_lowpass_components.LPCorrelate",
+                    "description": "Import direction for application class",
+                    "readonly": true,
+                    "type": "String",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Execution Time",
+                    "name": "execution_time",
+                    "value": "5",
+                    "default": "5",
+                    "description": "Estimated execution time",
+                    "readonly": true,
+                    "type": "Float",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "No. of CPUs",
+                    "name": "num_cpus",
+                    "value": "1",
+                    "default": "1",
+                    "description": "Number of cores used",
+                    "readonly": true,
+                    "type": "Integer",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "applicationArgs": [
+                {
+                    "text": "Normalize Signal",
+                    "name": "normalize",
+                    "value": "false",
+                    "default": "false",
+                    "description": "Whether to normalize the input signals (True) or not (False).",
+                    "readonly": false,
+                    "type": "Boolean",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                },
+                {
+                    "text": "Double Precision",
+                    "name": "doubleprecision",
+                    "value": "false",
+                    "default": "false",
+                    "description": "Whether to use double (true) or float (false) precision.",
+                    "readonly": false,
+                    "type": "Boolean",
+                    "precious": false,
+                    "options": [],
+                    "positional": false
+                }
+            ],
+            "git_url": "dlg_lowpass_components",
+            "sha": "d6ecc621"
+        },
+        {
+            "category": "PythonApp",
+            "drawOrderHint": 0,
+            "key": -3,
             "text": "LPFilterFFTCuda",
             "description": "Implements a lowpass filter via fft with cuda",
             "collapsed": false,
@@ -271,7 +386,7 @@
         {
             "category": "PythonApp",
             "drawOrderHint": 0,
-            "key": -3,
+            "key": -4,
             "text": "LPFilterFFTFFTW",
             "description": "Implements a lowpass filter via fft with FFTW",
             "collapsed": false,
@@ -374,7 +489,7 @@
         {
             "category": "PythonApp",
             "drawOrderHint": 0,
-            "key": -4,
+            "key": -5,
             "text": "LPFilterfftNP",
             "description": "Implements a lowpass filter via fft with numpy",
             "collapsed": false,
@@ -477,7 +592,7 @@
         {
             "category": "PythonApp",
             "drawOrderHint": 0,
-            "key": -5,
+            "key": -6,
             "text": "LPFilterPointwiseNP",
             "description": "Implements a lowpass filter via pointwise convolution with numpy",
             "collapsed": false,
@@ -580,7 +695,7 @@
         {
             "category": "PythonApp",
             "drawOrderHint": 0,
-            "key": -6,
+            "key": -7,
             "text": "LP_SignalGenerator",
             "description": "Generates a noisy sine signal for filtering. Effectively an input generator.",
             "collapsed": false,
@@ -702,7 +817,7 @@
         {
             "category": "PythonApp",
             "drawOrderHint": 0,
-            "key": -7,
+            "key": -8,
             "text": "LP_WindowGenerator",
             "description": "Generates a Hann window for low-pass filtering.",
             "collapsed": false,

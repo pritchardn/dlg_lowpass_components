@@ -11,6 +11,7 @@ from .filters import (
     LPFilterFFTCuda,
     LPFilterPointwiseNP,
 )
+from .utils import LPCorrelate
 
 __all__ = [
     "LPSignalGenerator",
@@ -20,4 +21,5 @@ __all__ = [
     "LPFilterFFTFFTW",
     "LPFilterFFTCuda",
     "LPFilterPointwiseNP",
+    "LPCorrelate",
 ]

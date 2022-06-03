@@ -9,7 +9,7 @@ from dlg_lowpass_components import (
     LPFilterFFTFFTW,
     LPFilterFFTCuda,
     LPFilterPointwiseNP,
-    LPFilterFFTNP,
+    LPFilterFFTNP, LPCorrelate,
 )
 from dlg.drop import InMemoryDROP
 from dlg.droputils import allDropContents, DROPWaiterCtx
@@ -216,3 +216,34 @@ class TestLPFilterPointwiseNP(unittest.TestCase):
         float_signal, _ = _run_filter(self, float_filter)
         double_signal, _ = _run_filter(self, double_filter)
         self.assertNotEqual(float_signal, double_signal)
+
+
+class TestCorrelation(unittest.TestCase):
+    def test_correlation(self):
+        correlate = LPCorrelate("e", "e")
+        generator = LPSignalGenerator("a", "a")
+        filter = LPFilterPointwiseNP("g", "g")
+        signal_drop = InMemoryDROP("b", "b")
+        window_drop = InMemoryDROP("c", "c")
+        ncc_drop = InMemoryDROP("f", "f")
+        in_signal = _run_component(generator)
+
+        generator = LPWindowGenerator("a", "a")
+        window = _run_component(generator)
+        filtered_signal_drop = InMemoryDROP("d", "d")
+        filter.addInput(signal_drop)
+        filter.addInput(window_drop)
+        filter.addOutput(filtered_signal_drop)
+        correlate.addInput(signal_drop)
+        correlate.addInput(filtered_signal_drop)
+        correlate.addOutput(ncc_drop)
+
+        with DROPWaiterCtx(self, ncc_drop, 10):
+            signal_drop.write(in_signal)
+            window_drop.write(window)
+            signal_drop.setCompleted()
+            window_drop.setCompleted()
+
+        ncc = allDropContents(ncc_drop)
+        ncc_val = np.frombuffer(ncc)
+        self.assertIsNotNone(ncc)
