@@ -1,6 +1,8 @@
 """
 dlg_lowpass_components filters
 """
+import pickle
+
 from .utils import PRECISIONS
 import logging
 
@@ -77,7 +79,7 @@ class LPFilterFFTNP(BarrierAppDROP):
         if len(ins) != 2:
             raise Exception("Precisely two input required for %r" % self)
 
-        array = [np.frombuffer(droputils.allDropContents(inp)) for inp in ins]
+        array = [pickle.loads(droputils.allDropContents(inp)) for inp in ins]
         self.series = array
 
     def filter(self):
@@ -90,8 +92,8 @@ class LPFilterFFTNP(BarrierAppDROP):
         nfft = determine_size(len(signal) + len(window) - 1)
         sig_zero_pad = np.zeros(nfft, dtype=self.precision["float"])
         win_zero_pad = np.zeros(nfft, dtype=self.precision["float"])
-        sig_zero_pad[0 : len(signal)] = signal
-        win_zero_pad[0 : len(window)] = window
+        sig_zero_pad[0: len(signal)] = signal
+        win_zero_pad[0: len(window)] = window
         sig_fft = np.fft.fft(sig_zero_pad)
         win_fft = np.fft.fft(win_zero_pad)
         out_fft = np.multiply(sig_fft, win_fft)
@@ -108,7 +110,7 @@ class LPFilterFFTNP(BarrierAppDROP):
             raise Exception("At least one output required for %r" % self)
         self.get_inputs()
         self.output = self.filter()
-        data = self.output.tobytes()
+        data = pickle.dumps(self.output)
         for output in outs:
             output.len = len(data)
             output.write(data)
@@ -166,8 +168,8 @@ class LPFilterFFTFFTW(LPFilterFFTNP):
         nfft = determine_size(len(signal) + len(window) - 1)
         sig_zero_pad = pyfftw.empty_aligned(len(signal), dtype=self.precision["float"])
         win_zero_pad = pyfftw.empty_aligned(len(window), dtype=self.precision["float"])
-        sig_zero_pad[0 : len(signal)] = signal
-        win_zero_pad[0 : len(window)] = window
+        sig_zero_pad[0: len(signal)] = signal
+        win_zero_pad[0: len(window)] = window
         sig_fft = pyfftw.interfaces.numpy_fft.fft(sig_zero_pad, n=nfft)
         win_fft = pyfftw.interfaces.numpy_fft.fft(win_zero_pad, n=nfft)
         out_fft = np.multiply(sig_fft, win_fft)
@@ -231,8 +233,8 @@ class LPFilterFFTCuda(LPFilterFFTNP):
         win_zero_pad = np.zeros(nfft, dtype=self.precision["float"])
         sig_gpu = gpuarray.zeros(sig_zero_pad.shape, dtype=self.precision["float"])
         win_gpu = gpuarray.zeros(win_zero_pad.shape, dtype=self.precision["float"])
-        sig_zero_pad[0 : len(signal)] = signal
-        win_zero_pad[0 : len(window)] = window
+        sig_zero_pad[0: len(signal)] = signal
+        win_zero_pad[0: len(window)] = window
         sig_gpu.set(sig_zero_pad)
         win_gpu.set(win_zero_pad)
 

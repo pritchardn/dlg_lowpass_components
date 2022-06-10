@@ -1,3 +1,4 @@
+import pickle
 import unittest
 import time
 import numpy as np
@@ -28,7 +29,7 @@ class TestLPSignalGenerator(unittest.TestCase):
         generator = LPSignalGenerator("a", "a")
         signal = _run_component(generator)
         self.assertIsNotNone(signal)
-        self.assertEqual(generator.length * 8, len(signal))
+        self.assertEqual(generator.length, len(pickle.loads(signal)))
 
     def test_changed_length(self):
         new_length = 1024
@@ -36,7 +37,7 @@ class TestLPSignalGenerator(unittest.TestCase):
         signal = _run_component(generator)
         self.assertIsNotNone(signal)
         self.assertEqual(new_length, generator.length)
-        self.assertEqual(new_length * 8, len(signal))
+        self.assertEqual(new_length, len(pickle.loads(signal)))
 
     def test_added_noise(self):
         noise_params = {"noise": 0.0, "stddiv": 1.0, "frequency": 666, "randomseed": 42}
@@ -65,7 +66,7 @@ class TestLPWindowGenerator(unittest.TestCase):
         generator = LPWindowGenerator("a", "a")
         signal = _run_component(generator)
         self.assertIsNotNone(signal)
-        self.assertEqual(generator.length * 8, len(signal))
+        self.assertEqual(generator.length, len(pickle.loads(signal)))
 
     def test_change_length(self):
         new_length = 512
@@ -73,7 +74,7 @@ class TestLPWindowGenerator(unittest.TestCase):
         signal = _run_component(generator)
         self.assertIsNotNone(signal)
         self.assertEqual(new_length, generator.length)
-        self.assertEqual(new_length * 8, len(signal))
+        self.assertEqual(new_length, len(pickle.loads(signal)))
 
     def test_change_cutoff(self):
         new_cutoff = 660
@@ -142,7 +143,7 @@ def _run_filter(obj, filter):
         window_drop.setCompleted()
 
     filtered_signal = allDropContents(filtered_signal_drop)
-    return filtered_signal, len(in_signal)
+    return filtered_signal, len(pickle.loads(in_signal))
 
 
 class TestLPFilterFFTNP(unittest.TestCase):
@@ -151,8 +152,8 @@ class TestLPFilterFFTNP(unittest.TestCase):
         filtered_signal, original_length = _run_filter(self, filter)
         self.assertIsNotNone(filtered_signal)
         self.assertEqual(
-            original_length / 8 * 2 - 1,
-            len(filtered_signal) / np.dtype(complex).itemsize,
+            original_length * 2 - 1,
+            len(pickle.loads(filtered_signal)),
         )
 
     def test_precision(self):
@@ -169,8 +170,8 @@ class TestLPFilterFFTFFTW(unittest.TestCase):
         filtered_signal, original_length = _run_filter(self, filter)
         self.assertIsNotNone(filtered_signal)
         self.assertEqual(
-            original_length / 8 * 2 - 1,
-            len(filtered_signal) / np.dtype(complex).itemsize,
+            original_length * 2 - 1,
+            len(pickle.loads(filtered_signal)),
         )
 
     def test_precision(self):
@@ -188,8 +189,8 @@ class TestLPFilterFFTCuda(unittest.TestCase):
         filtered_signal, original_length = _run_filter(self, filter)
         self.assertIsNotNone(filtered_signal)
         self.assertEqual(
-            original_length / 8 * 2 - 1,
-            len(filtered_signal) / np.dtype(complex).itemsize,
+            original_length * 2 - 1,
+            len(pickle.loads(filtered_signal)),
         )
 
     def test_precision(self):
@@ -206,8 +207,8 @@ class TestLPFilterPointwiseNP(unittest.TestCase):
         filtered_signal, original_length = _run_filter(self, filter)
         self.assertIsNotNone(filtered_signal)
         self.assertEqual(
-            original_length / 8 * 2 - 1,
-            len(filtered_signal) / np.dtype(complex).itemsize,
+            original_length * 2 - 1,
+            len(pickle.loads(filtered_signal)),
         )
 
     def test_precision(self):
@@ -245,5 +246,6 @@ class TestCorrelation(unittest.TestCase):
             window_drop.setCompleted()
 
         ncc = allDropContents(ncc_drop)
-        ncc_val = np.frombuffer(ncc)
+        ncc_val = pickle.loads(ncc)
         self.assertIsNotNone(ncc)
+        self.assertIsNotNone(ncc_val)

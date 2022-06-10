@@ -2,6 +2,7 @@
 dlg_lowpass_components generators
 """
 import logging
+import pickle
 
 import numpy as np
 from dlg import droputils
@@ -122,7 +123,7 @@ class LPSignalGenerator(BarrierAppDROP):
                 self.noise.get("noisemultiplier", 0.1),
             )
 
-        data = self.series.tobytes()
+        data = pickle.dumps(self.series)
         for output in outs:
             output.len = len(data)
             output.write(data)
@@ -210,7 +211,7 @@ class LPWindowGenerator(BarrierAppDROP):
         if len(outs) < 1:
             raise Exception("At least one output required for %r" % self)
         self.series = self.gen_win()
-        data = self.series.tobytes()
+        data = pickle.dumps(self.series)
         for output in outs:
             output.len = len(data)
             output.write(data)
@@ -301,8 +302,8 @@ class LPAddNoise(BarrierAppDROP):
         if len(ins) != 1:
             raise Exception("Precisely one input required for %r" % self)
 
-        array = np.frombuffer(droputils.allDropContents(ins[0]))
-        self.signal = np.frombuffer(array)
+        array = pickle.loads(droputils.allDropContents(ins[0]))
+        self.signal = array
 
     def run(self):
         """
@@ -314,7 +315,7 @@ class LPAddNoise(BarrierAppDROP):
             raise Exception("At least one output required for %r" % self)
         self.get_inputs()
         sig = self.add_noise()
-        data = sig.tobytes()
+        data = pickle.dumps(sig)
         for output in outs:
             output.len = len(data)
             output.write(data)

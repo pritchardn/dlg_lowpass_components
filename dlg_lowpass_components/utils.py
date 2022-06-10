@@ -1,3 +1,5 @@
+import pickle
+
 import numpy as np
 from dlg.drop import BarrierAppDROP
 from dlg import droputils
@@ -81,17 +83,12 @@ class LPCorrelate(BarrierAppDROP):
         ins = self.inputs
         if len(ins) != 2:
             raise Exception("Needs two inputs to function")
-        self.signal_a = np.frombuffer(
-            droputils.allDropContents(ins[0]), dtype=self.precision["float"]
-        ).astype(self.precision["complex"])
-        self.signal_b = np.frombuffer(
-            droputils.allDropContents(ins[1]), dtype=self.precision["complex"]
+        self.signal_a = pickle.loads(
+            droputils.allDropContents(ins[0])
         )
-        if len(self.signal_a) < len(self.signal_b):
-            nfft = determine_size(len(self.signal_b))
-            sig_zero_pad = np.zeros(nfft, dtype=self.precision["complex"])
-            sig_zero_pad[0 : len(self.signal_a)] = self.signal_a
-            self.signal_a = sig_zero_pad
+        self.signal_b = pickle.loads(
+            droputils.allDropContents(ins[1])
+        )
 
     def initialize(self, **kwargs):
         super().initialize(**kwargs)
@@ -111,7 +108,8 @@ class LPCorrelate(BarrierAppDROP):
             )
         else:
             ncc = correlate_signals(self.signal_a, self.signal_b)
-        ncc = np.round(ncc, int(np.ceil(np.log10(len(self.signal_a))))).tobytes()
+        ncc = np.round(ncc, int(np.ceil(np.log10(len(self.signal_a)))))
+        ncc = pickle.dumps(ncc)
         for output in outs:
             output.len = len(ncc)
             output.write(ncc)
