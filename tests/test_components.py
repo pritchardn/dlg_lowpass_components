@@ -1,7 +1,5 @@
 import pickle
 import unittest
-import time
-import numpy as np
 
 from dlg_lowpass_components import (
     LPSignalGenerator,

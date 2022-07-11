@@ -64,13 +64,12 @@ class LPSignalGenerator(BarrierAppDROP):
     noise = dlg_dict_param(
         "noise", {}
     )  # {'noise': 0.0, 'stddiv': 1.0, 'frequency': 666, 'randomseed': 42})
-    series = None
 
     def initialize(self, **kwargs):
         super(LPSignalGenerator, self).initialize(**kwargs)
 
     def add_noise(
-        self, series: np.array, mean, std, freq, sample_rate, seed, alpha=0.1
+            self, series: np.array, mean, std, freq, sample_rate, seed, alpha=0.1
     ):
         """
         A noise to the provided signal by producing random values of a given frequency
@@ -109,12 +108,12 @@ class LPSignalGenerator(BarrierAppDROP):
         outs = self.outputs
         if len(outs) < 1:
             raise Exception("At least one output required for %r" % self)
-        self.series = self.gen_sig()
+        series = self.gen_sig()
         if len(self.noise) > 0:
             if "noisemultiplier" in self.noise:
                 self.noise["noisemultiplier"] = 1 / self.noise["noisemultiplier"]
-            self.series = self.add_noise(
-                self.series,
+            series = self.add_noise(
+                series,
                 self.noise["noise"],
                 self.noise["stddiv"],
                 self.noise["frequency"],
@@ -123,7 +122,7 @@ class LPSignalGenerator(BarrierAppDROP):
                 self.noise.get("noisemultiplier", 0.1),
             )
 
-        data = pickle.dumps(self.series)
+        data = pickle.dumps(series)
         for output in outs:
             output.len = len(data)
             output.write(data)
@@ -210,8 +209,8 @@ class LPWindowGenerator(BarrierAppDROP):
         outs = self.outputs
         if len(outs) < 1:
             raise Exception("At least one output required for %r" % self)
-        self.series = self.gen_win()
-        data = pickle.dumps(self.series)
+        series = self.gen_win()
+        data = pickle.dumps(series)
         for output in outs:
             output.len = len(data)
             output.write(data)
@@ -274,24 +273,24 @@ class LPAddNoise(BarrierAppDROP):
     samplerate = dlg_int_param("samplerate", 5000)
     randomseed = dlg_int_param("randomseed", 42)
     noisemultiplier = dlg_float_param("noisemultiplier", 0.1)
-    signal = np.empty([1])
 
-    def add_noise(self):
+    def add_noise(self, signal):
         """
         Adds noise at a specified frequency.
+        :param:signal The input signal to be modified
         :return: Modified signal
         """
         np.random.seed(self.randomseed)
         samples = self.noisemultiplier * np.random.normal(
-            self.noise, self.stddiv, size=len(self.signal)
+            self.noise, self.stddiv, size=len(signal)
         )
-        for i in range(len(self.signal)):
+        for i in range(len(signal)):
             samples[i] += np.sin(2 * np.pi * i * self.frequency / self.samplerate)
 
-        out_array = np.empty(self.signal.shape)
-        np.add(self.signal, samples, out=out_array)
-        self.signal = out_array
-        return self.signal
+        out_array = np.empty(signal.shape)
+        np.add(signal, samples, out=out_array)
+        signal = out_array
+        return signal
 
     def get_inputs(self):
         """
@@ -303,7 +302,7 @@ class LPAddNoise(BarrierAppDROP):
             raise Exception("Precisely one input required for %r" % self)
 
         array = pickle.loads(droputils.allDropContents(ins[0]))
-        self.signal = array
+        return array
 
     def run(self):
         """
@@ -313,9 +312,9 @@ class LPAddNoise(BarrierAppDROP):
         outs = self.outputs
         if len(outs) < 1:
             raise Exception("At least one output required for %r" % self)
-        self.get_inputs()
-        sig = self.add_noise()
-        data = pickle.dumps(sig)
+        signal = self.get_inputs()
+        signal = self.add_noise(signal)
+        data = pickle.dumps(signal)
         for output in outs:
             output.len = len(data)
             output.write(data)

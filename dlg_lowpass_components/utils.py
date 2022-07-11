@@ -83,12 +83,13 @@ class LPCorrelate(BarrierAppDROP):
         ins = self.inputs
         if len(ins) != 2:
             raise Exception("Needs two inputs to function")
-        self.signal_a = pickle.loads(
+        signal_a = pickle.loads(
             droputils.allDropContents(ins[0])
         )
-        self.signal_b = pickle.loads(
+        signal_b = pickle.loads(
             droputils.allDropContents(ins[1])
         )
+        return signal_a, signal_b
 
     def initialize(self, **kwargs):
         super().initialize(**kwargs)
@@ -101,14 +102,14 @@ class LPCorrelate(BarrierAppDROP):
         outs = self.outputs
         if len(outs) < 1:
             raise Exception("At least one output required for %r" % self)
-        self._get_inputs()
+        signal_a, signal_b = self._get_inputs()
         if self.normalize:
             ncc = correlate_signals(
-                normalize_signal(self.signal_a), normalize_signal(self.signal_b)
+                normalize_signal(signal_a), normalize_signal(signal_b)
             )
         else:
-            ncc = correlate_signals(self.signal_a, self.signal_b)
-        ncc = np.round(ncc, int(np.ceil(np.log10(len(self.signal_a)))))
+            ncc = correlate_signals(signal_a, signal_b)
+        ncc = np.round(ncc, int(np.ceil(np.log10(len(signal_a)))))
         ncc = pickle.dumps(ncc)
         for output in outs:
             output.len = len(ncc)

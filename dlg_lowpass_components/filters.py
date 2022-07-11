@@ -60,8 +60,6 @@ class LPFilterFFTNP(BarrierAppDROP):
     precision = {}
     # default values
     doubleprecision = dlg_bool_param("doubleprecision", True)
-    series = []
-    output = np.zeros([1])
 
     def initialize(self, **kwargs):
         super().initialize(**kwargs)
@@ -80,15 +78,15 @@ class LPFilterFFTNP(BarrierAppDROP):
             raise Exception("Precisely two input required for %r" % self)
 
         array = [pickle.loads(droputils.allDropContents(inp)) for inp in ins]
-        self.series = array
+        return array
 
-    def filter(self):
+    def filter(self, signal, window):
         """
         Actually performs the filtering
+        :param:signal The input signal to be filtered
+        :param:window The window used as the lowpass filter
         :return: Numpy array of filtered signal.
         """
-        signal = self.series[0]
-        window = self.series[1]
         nfft = determine_size(len(signal) + len(window) - 1)
         sig_zero_pad = np.zeros(nfft, dtype=self.precision["float"])
         win_zero_pad = np.zeros(nfft, dtype=self.precision["float"])
@@ -108,9 +106,9 @@ class LPFilterFFTNP(BarrierAppDROP):
         outs = self.outputs
         if len(outs) < 1:
             raise Exception("At least one output required for %r" % self)
-        self.get_inputs()
-        self.output = self.filter()
-        data = pickle.dumps(self.output)
+        input_data = self.get_inputs()
+        output_data = self.filter(input_data[0], input_data[1])
+        data = pickle.dumps(output_data)
         for output in outs:
             output.len = len(data)
             output.write(data)
@@ -157,14 +155,14 @@ class LPFilterFFTFFTW(LPFilterFFTNP):
         [dlg_streaming_input("binary/*")],
     )
 
-    def filter(self):
+    def filter(self, signal, window):
         """
         Actually performs the filtering
+        :param:signal The input signal to be filtered
+        :param:window The window used as the lowpass filter
         :return: Filtered signal as numpy array.
         """
         pyfftw.interfaces.cache.disable()
-        signal = self.series[0]
-        window = self.series[1]
         nfft = determine_size(len(signal) + len(window) - 1)
         sig_zero_pad = pyfftw.empty_aligned(len(signal), dtype=self.precision["float"])
         win_zero_pad = pyfftw.empty_aligned(len(window), dtype=self.precision["float"])
@@ -210,9 +208,11 @@ class LPFilterFFTCuda(LPFilterFFTNP):
         [dlg_streaming_input("binary/*")],
     )
 
-    def filter(self):
+    def filter(self, signal, window):
         """
         Actually performs the filtering
+        :param:signal The input signal to be filtered
+        :param:window The window used as the lowpass filter
         :return:
         """
         import pycuda.gpuarray as gpuarray
@@ -224,8 +224,6 @@ class LPFilterFFTCuda(LPFilterFFTNP):
         cuda.init()
         context = make_default_context()
         device = context.get_device()
-        signal = self.series[0]
-        window = self.series[1]
         linalg.init()
         nfft = determine_size(len(signal) + len(window) - 1)
         # Move data to GPU
@@ -299,7 +297,13 @@ class LPFilterPointwiseNP(LPFilterFFTNP):
         [dlg_streaming_input("binary/*")],
     )
 
-    def filter(self):
-        return np.convolve(self.series[0], self.series[1], mode="full").astype(
+    def filter(self, signal, window):
+        """
+        Actually performs the filtering
+        :param:signal The input signal to be filtered
+        :param:window The window used as the lowpass filter
+        :return:
+        """
+        return np.convolve(signal, window, mode="full").astype(
             self.precision["complex"]
         )
