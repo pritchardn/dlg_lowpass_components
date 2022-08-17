@@ -3,6 +3,8 @@
 [![codecov](https://codecov.io/gh/pritchardn/dlg_lowpass_components/branch/main/graph/badge.svg?token=dlg_lowpass_components_token_here)](https://codecov.io/gh/pritchardn/dlg_lowpass_components)
 [![CI](https://github.com/pritchardn/dlg_lowpass_components/actions/workflows/main.yml/badge.svg)](https://github.com/pritchardn/dlg_lowpass_components/actions/workflows/main.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![DOI](https://zenodo.org/badge/491378421.svg)](https://zenodo.org/badge/latestdoi/491378421)
+
 
 
 Awesome dlg_lowpass_components created by pritchardn
